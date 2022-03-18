@@ -1,0 +1,15 @@
+version: 0.1
+component: build
+timeoutInSeconds: 10000
+shell: bash
+
+# Build Pipeline steps
+steps:
+  - type: Command
+    name: Build React Application
+    shell: bash
+    timeoutInSeconds: 4000
+    command: |
+      pwd
+      ls
+      npm install
