@@ -5,7 +5,7 @@ shell: bash
 
 
 env:
-  exportedVriables:
+  exportedVariables:
     - app_version
 
 # Build Pipeline steps
