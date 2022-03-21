@@ -36,3 +36,4 @@ outputArtifacts:
   - name: react-sandbox-image
     type: DOCKER_IMAGE
     location: ${appLocation}
+
