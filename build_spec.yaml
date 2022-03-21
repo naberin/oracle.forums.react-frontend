@@ -29,11 +29,11 @@ steps:
     shell: bash
     timeoutInSeconds: 4000
     command: |
-      docker build -t react-sandbox .
+      docker build -t ${appLocation}:${app_version} .
 
 
 outputArtifacts:
   - name: react-sandbox-image
     type: DOCKER_IMAGE
-    location: ${appLocation}
+    location: ${appLocation}:${app_version}
 
