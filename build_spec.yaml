@@ -23,7 +23,7 @@ steps:
     shell: bash
     timeoutInSeconds: 1000
     command: |
-      app_version=`cat version.txt`
+      appVersion=`cat version.txt`
   - type: Command
     name: Build Docker
     shell: bash
