@@ -3,6 +3,11 @@ component: build
 timeoutInSeconds: 10000
 shell: bash
 
+
+env:
+  exportedVriables:
+    - app_version
+
 # Build Pipeline steps
 steps:
   - type: Command
@@ -14,6 +19,12 @@ steps:
       ls
       npm install
   - type: Command
+    name: Get Version
+    shell: bash
+    timeoutInSeconds: 1000
+    command: |
+      app_version=`cat version.txt`
+  - type: Command
     name: Build Docker
     shell: bash
     timeoutInSeconds: 4000
@@ -24,4 +35,4 @@ steps:
 outputArtifacts:
   - name: react-sandbox-image
     type: DOCKER_IMAGE
-    location: ${app_location}
+    location: ${appLocation}
