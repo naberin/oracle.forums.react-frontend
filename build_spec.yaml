@@ -35,5 +35,6 @@ steps:
 outputArtifacts:
   - name: react-sandbox-image
     type: DOCKER_IMAGE
-    location: ${appLocation}:${app_version}
+    location: "${appLocation}:${app_version}"
+
 
