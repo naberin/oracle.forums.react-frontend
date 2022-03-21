@@ -20,6 +20,7 @@ steps:
     command: |
       docker build -t react-sandbox .
 
+
 outputArtifacts:
   - name: react-sandbox-image
     type: DOCKER_IMAGE
