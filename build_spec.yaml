@@ -37,3 +37,4 @@ outputArtifacts:
     type: DOCKER_IMAGE
     location: "${appLocation}:${app_version}"
 
+
