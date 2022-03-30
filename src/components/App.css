@@ -1,0 +1,11 @@
+#app {
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    padding: 4px 0;
+    background-color: #fff;
+    height: 50px;
+    max-height: 50px;
+}
