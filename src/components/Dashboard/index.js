@@ -2,12 +2,26 @@ import Thread from "../ThreadLink";
 import Container from "../Container";
 
 import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 function Dashboard() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [threads, setThreads] = useState([])
 
+    useEffect( () => {
+        axios.get("/api/threads")
+            .then(res => {
+                let threads = res.data.threads;
+                setThreads(threads);
+            })
+            .catch(err => {
+                setError(err);
+            })
+            .finally(() => {
+                setIsLoaded(true)
+            })
+    });
 
     // Map list of threads to threadComponent for display
     let threadsListing = threads.length ?
