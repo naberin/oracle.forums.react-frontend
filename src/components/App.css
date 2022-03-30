@@ -7,11 +7,25 @@ header {
     background-color: #fff;
     height: 50px;
     max-height: 50px;
-    padding: 18px 0;
 }
-header .links > *:not(:last-child) {
-    margin-right: 18px;
+header .header-container,
+header .links,
+header .app-title
+{
+    height: 100%;
 }
+header .app-title .title {
+    margin-right: 19px;
+    padding-top: 18px;
+}
+header .links .link {
+    border: 1px solid transparent;
+    padding-top: 17px;
+    padding-right: 9px;
+    padding-left: 9px;
+}
+header .links .link:hover { border: 1px solid #555555 }
+
 
 .title {
     font-weight: bolder;

@@ -6,12 +6,12 @@ const Component = function(props) {
 
     return (
         <header>
-            <Container classes={"flex flex-row flex-justify-between"}>
+            <Container classes={"flex flex-row flex-justify-between header-container"}>
 
                 <div className={"links flex flex-row"}>
-                    <h2 className={"title"}>Oracle Forums</h2>
-                    <Link to={"/"} className={"app-button"}>Home</Link>
-                    <Link to={"submit"} className={"app-button"}>New Thread</Link>
+                    <div className={"app-title"}><h2 className={"title"}>Oracle Forums</h2></div>
+                    <Link to={"/"} className={"app-button link"}>Home</Link>
+                    <Link to={"submit"} className={"app-button link"}>New Thread</Link>
                 </div>
 
                 <div/>
