@@ -12,7 +12,7 @@ const Component = function(props) {
 
     return (
         <div className={"thread-component paper flex flex-row"}>
-            <div className={"title"}  onClick={() => {navigate("/threads/" + id)}}><h3>{title}</h3></div>
+            <div className={"title"}  onClick={() => {navigate("/user/" + id)}}><h3>{title}</h3></div>
 
         </div>
     )
