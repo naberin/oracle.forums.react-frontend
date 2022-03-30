@@ -10,18 +10,22 @@ function Dashboard() {
     const [threads, setThreads] = useState([])
 
     useEffect( () => {
-        axios.get("/api/threads")
-            .then(res => {
-                let threads = res.data.threads;
-                setThreads(threads);
-            })
-            .catch(err => {
-                setError(err);
-            })
-            .finally(() => {
-                setIsLoaded(true)
-            })
-    });
+        let getAllThreads = () => {
+            axios.get("/api/threads")
+                .then(res => {
+                    let threads = res.data.threads;
+                    setThreads(threads);
+                })
+                .catch(err => {
+                    setError(err);
+                })
+                .finally(() => {
+                    setIsLoaded(true)
+                })
+        }
+        getAllThreads();
+
+    }, []);
 
     // Map list of threads to threadComponent for display
     let threadsListing = threads.length ?
