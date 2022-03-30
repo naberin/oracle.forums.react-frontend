@@ -4,8 +4,52 @@
 }
 
 header {
-    padding: 4px 0;
+    padding: 18px 0;
     background-color: #fff;
     height: 50px;
     max-height: 50px;
+}
+
+.page {
+    padding: 14px 0;
+}
+
+.page .column:not(:last-child) {
+    margin-right: 10px;
+}
+
+.message {
+    text-align: left;
+    color: #959595;
+}
+
+.paper {
+    background-color: #fff;
+    box-shadow: 3px 10px 10px rgba(0,0,0,.04);
+}
+
+.thread-component {
+    border: 1px solid transparent;
+    display: block;
+}
+
+.thread-component:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.thread-component:hover {
+    border: 1px solid #555;
+}
+.thread-component .title {
+    padding: 18px 9px;
+    width: 100%;
+}
+.thread-component .title:hover {
+    cursor: pointer;
+}
+
+
+#forum-details .title {
+    font-size: 15px;
+    padding: 9px 0;
 }

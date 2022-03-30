@@ -9,7 +9,7 @@ const component = function(props) {
                     <h2>Oracle Forums</h2>
                 </div>
 
-                < div />
+                <div/>
 
             </Container>
         </header>

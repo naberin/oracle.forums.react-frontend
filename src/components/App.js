@@ -12,7 +12,7 @@ function App() {
         <main className={"flex-grow-8"}>
             <Routes>
                 <Route path={"/"} element={ <Dashboard/> }/>
-                <Route path={"/:id"} element={ <Thread/> }/>
+                <Route path={"/threads/:id"} element={ <Thread/> }/>
             </Routes>
         </main>
 
