@@ -1,12 +1,17 @@
 import Container from "./Container";
+import {Link, useLocation} from "react-router-dom";
 
-const component = function(props) {
+const Component = function(props) {
+    let location = useLocation();
+
     return (
         <header>
             <Container classes={"flex flex-row flex-justify-between"}>
 
-                <div>
-                    <h2>Oracle Forums</h2>
+                <div className={"links flex flex-row"}>
+                    <h2 className={"title"}>Oracle Forums</h2>
+                    <Link to={"/"} className={"app-button"}>Home</Link>
+                    <Link to={"submit"} className={"app-button"}>New Thread</Link>
                 </div>
 
                 <div/>
@@ -16,4 +21,4 @@ const component = function(props) {
     )
 }
 
-export default component;
+export default Component;

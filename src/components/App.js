@@ -2,6 +2,7 @@ import './App.css';
 import AppHeader from "./AppHeader";
 import Dashboard from "./Dashboard";
 import Thread from "./Thread";
+import NewThread from "./NewThread";
 
 import {Route, Routes} from "react-router-dom";
 
@@ -12,7 +13,8 @@ function App() {
         <main className={"flex-grow-8"}>
             <Routes>
                 <Route path={"/"} element={ <Dashboard/> }/>
-                <Route path={"/threads/:id"} element={ <Thread/> }/>
+                <Route path={"/submit"} element={ <NewThread/> }/>
+                <Route path={"/user/:id"} element={ <Thread/> }/>
             </Routes>
         </main>
 

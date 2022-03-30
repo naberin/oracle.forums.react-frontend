@@ -4,10 +4,17 @@
 }
 
 header {
-    padding: 18px 0;
     background-color: #fff;
     height: 50px;
     max-height: 50px;
+    padding: 18px 0;
+}
+header .links > *:not(:last-child) {
+    margin-right: 18px;
+}
+
+.title {
+    font-weight: bolder;
 }
 
 .page {
