@@ -8,7 +8,16 @@ function Dashboard() {
     const [message, setMessage] = useState("");
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [threads, setThreads] = useState([{title: "this is nice", id:12}])
+    const [threads, setThreads] = useState([
+        {
+            title: "EXAMPLE THREAD: Why use Oracle Database over other DBMS software like MySQL and Postgres?",
+            id:"A",
+            message: "I am implementing a microservice using Java and Spring Boot and was given the freedom to choose whichever " +
+                "system could store custom report queries and related variables. I have decided to use relational databases and " +
+                "my team has mixed familiarity between PostgreSQL, MySQL, Oracle SQL. I am wondering why choose Oracle Database? What are the " +
+                "PROs and CONs for long term solutions?"
+        }
+        ])
 
     useEffect( () => {
         let getAllThreads = () => {
@@ -35,7 +44,12 @@ function Dashboard() {
     let threadsListing = threads.length ?
         threads.map((thread, index) => {
             return (
-                <Thread title={thread.title} id={thread.id} key={index}/>
+                <Thread
+                    title={thread.title}
+                    message={thread.message}
+                    id={thread.id}
+                    key={index}
+                />
             )
         }) :
         <div className={"message"}>{ message }</div>;

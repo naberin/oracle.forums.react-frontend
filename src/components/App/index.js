@@ -16,7 +16,7 @@ function Index() {
                 <Routes>
                     <Route path={"/"} element={<Dashboard/>}/>
                     <Route path={"/submit"} element={<NewThread/>}/>
-                    <Route path={"/user/:id"} element={<Thread/>}/>
+                    <Route path={"/channels/:id"} element={<Thread/>}/>
                 </Routes>
             </main>
         </div>

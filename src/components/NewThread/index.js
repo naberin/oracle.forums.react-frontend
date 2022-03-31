@@ -20,7 +20,7 @@ function Component() {
         axios.post("/submit", {subject, message})
             .then( res => {
                 let id = res.data.id;
-                navigateTo(`/users/${id}`)
+                navigateTo(`/channels/${id}`)
             })
             .catch( err => {
                 e.preventDefault()
