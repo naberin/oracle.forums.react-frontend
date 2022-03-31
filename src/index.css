@@ -5,13 +5,8 @@ html, body, #root {
     margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-    body   { background:  #292929; color: #fff; }
-}
 
-@media (prefers-color-scheme: light) {
-    body   { background: #e9e9e9; color:  #555; }
-}
+body   { background: #e9e9e9; color:  #555; }
 
 * {
     box-sizing: border-box;

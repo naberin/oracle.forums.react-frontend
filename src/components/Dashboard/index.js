@@ -5,9 +5,10 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 function Dashboard() {
+    const [message, setMessage] = useState("");
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [threads, setThreads] = useState([])
+    const [threads, setThreads] = useState([{title: "this is nice", id:12}])
 
     useEffect( () => {
         let getAllThreads = () => {
@@ -15,9 +16,12 @@ function Dashboard() {
                 .then(res => {
                     let threads = res.data.threads;
                     setThreads(threads);
+
+                    if (!threads) setMessage("There are currently no threads.");
                 })
                 .catch(err => {
                     setError(err);
+                    setMessage("Error: Encountered an error in fetching threads.");
                 })
                 .finally(() => {
                     setIsLoaded(true)
@@ -34,7 +38,7 @@ function Dashboard() {
                 <Thread title={thread.title} id={thread.id} key={index}/>
             )
         }) :
-        <div className={"message"}>There are currently no threads.</div>;
+        <div className={"message"}>{ message }</div>;
 
     return (
         <section className={"page"}>
