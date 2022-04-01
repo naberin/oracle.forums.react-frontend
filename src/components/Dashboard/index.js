@@ -4,7 +4,8 @@ import Container from "../Container";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-function Dashboard() {
+function Dashboard(props) {
+
     const [message, setMessage] = useState("");
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -18,6 +19,10 @@ function Dashboard() {
                 "PROs and CONs for long term solutions?"
         }
         ])
+
+
+    // Raising props up to App by setting currentThread
+    let setCurrentThread = props.setCurrentThread
 
     useEffect( () => {
         let getAllThreads = () => {
@@ -37,6 +42,7 @@ function Dashboard() {
                 })
         }
         getAllThreads();
+        setCurrentThread(null);
 
     }, []);
 
@@ -45,6 +51,7 @@ function Dashboard() {
         threads.map((thread, index) => {
             return (
                 <Thread
+                    setCurrentThread = {setCurrentThread}
                     title={thread.title}
                     message={thread.message}
                     id={thread.id}

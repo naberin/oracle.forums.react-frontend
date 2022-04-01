@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Container from "../Container";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {clear} from "@testing-library/user-event/dist/clear";
 
 function Component() {
     let navigateTo = useNavigate();
@@ -16,14 +17,20 @@ function Component() {
     const handleMessageChange = e => {
         setMessage(e.target.value);
     }
+
+    const clearForm = () => {
+        setSubject("");
+        setMessage("");
+    }
+
     const handleSubmit = e => {
-        axios.post("/submit", {subject, message})
+        axios.post("/", {subject, message})
             .then( res => {
                 let id = res.data.id;
+                clearForm();
                 navigateTo(`/channels/${id}`)
             })
             .catch( err => {
-                e.preventDefault()
                 setError(err);
             })
     }
@@ -31,17 +38,17 @@ function Component() {
     return (
         <section className={"page"}>
             <Container className={"flex flex-row"}>
-                <div className={"thread-form-container paper"}>
-                    <div className={"title"}>
+                <div className={"thread-form-container"}>
+                    <div className={"title paper"}>
                         Create a New Thread
                     </div>
-                    <form className={"thread-form flex flex-col"} onSubmit={ handleSubmit }>
-                        <input placeholder={"Subject"} className={"app-input"} required={true} onChange={ handleSubjectChange }/>
-                        <textarea placeholder={"Message"} id={""} className={"app-input"}/>
+                    <div className={"thread-form flex flex-col paper"}>
+                        <input placeholder={"Subject"} className={"app-input"} required={true} value={subject} onChange={ handleSubjectChange }/>
+                        <textarea placeholder={"Message"} id={""} className={"app-input"} value={message} onChange={ handleMessageChange }/>
                         <div className={"flex flex-row flex-justify-end"}>
-                            <input type={"submit"} value={"Submit"} className={"app-button"}/>
+                            <input type={"submit"} value={"Submit"} className={"app-button"} onClick={ handleSubmit }/>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </Container>
         </section>
