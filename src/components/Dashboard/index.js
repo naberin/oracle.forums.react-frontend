@@ -65,10 +65,8 @@ function Dashboard(props) {
         <section className={"page"}>
             <Container>
                 <div className={"flex flex-row"}>
-                    <div id="forum-threads-list" className={"column flex-grow-6"}>
+                    <div id="forum-threads-list" className={"column flex-grow-10"}>
                         {threadsListing}
-                    </div>
-                    <div id="forum-details" className={"column flex-grow-4"}>
                     </div>
                 </div>
             </Container>
