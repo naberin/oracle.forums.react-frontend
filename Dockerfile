@@ -14,8 +14,5 @@ COPY ./ ./
 # expose endpoint
 EXPOSE 3000
 
-# set environment variables
-ENV REACT_APP_API_ENDPOINT $REACT_APP_API_ENDPOINT
-
 # run application
 CMD [ "npm", "start" ]

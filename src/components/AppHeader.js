@@ -1,8 +1,7 @@
 import Container from "./Container";
-import {Link, useLocation} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-const Component = function(props) {
-    let location = useLocation();
+const Component = function() {
 
     return (
         <header>

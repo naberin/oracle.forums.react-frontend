@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Container from "../Container";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {clear} from "@testing-library/user-event/dist/clear";
 
 function Component() {
     let navigateTo = useNavigate();
