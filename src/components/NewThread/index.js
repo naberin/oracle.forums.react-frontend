@@ -24,7 +24,7 @@ function Component() {
     }
 
     const handleSubmit = e => {
-        axios.post("/", {subject, message})
+        axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/threads`, {subject, message})
             .then( res => {
                 let id = res.data.id;
                 clearForm();

@@ -9,16 +9,7 @@ function Dashboard(props) {
     const [message, setMessage] = useState("");
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [threads, setThreads] = useState([
-        {
-            title: "EXAMPLE THREAD: Why use Oracle Database over other DBMS software like MySQL and Postgres?",
-            id:"A",
-            message: "I am implementing a microservice using Java and Spring Boot and was given the freedom to choose whichever " +
-                "system could store custom report queries and related variables. I have decided to use relational databases and " +
-                "my team has mixed familiarity between PostgreSQL, MySQL, Oracle SQL. I am wondering why choose Oracle Database? What are the " +
-                "PROs and CONs for long term solutions?"
-        }
-        ])
+    const [threads, setThreads] = useState([])
 
 
     // Raising props up to App by setting currentThread
@@ -26,12 +17,14 @@ function Dashboard(props) {
 
     useEffect( () => {
         let getAllThreads = () => {
-            axios.get("/api/threads")
+            axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/threads`)
                 .then(res => {
-                    let threads = res.data.threads;
+                    let threads = res.data.items;
                     setThreads(threads);
 
-                    if (!threads) setMessage("There are currently no threads.");
+                    if (!threads.length) {
+                        setMessage("There are currently no threads.");
+                    }
                 })
                 .catch(err => {
                     setError(err);
@@ -42,12 +35,13 @@ function Dashboard(props) {
                 })
         }
         getAllThreads();
+
         setCurrentThread(null);
 
     }, []);
 
     // Map list of threads to threadComponent for display
-    let threadsListing = threads.length ?
+    let threadsListing = threads && threads.length > 0 ?
         threads.map((thread, index) => {
             return (
                 <Thread

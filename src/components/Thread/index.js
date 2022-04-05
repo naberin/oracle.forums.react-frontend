@@ -20,7 +20,7 @@ function Thread(props) {
 
     useEffect(() => {
         let getThread = () => {
-            axios.get(`/api/channels/${params.id}`)
+            axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/threads/${params.id}`)
                 .then(res => {
                     let details = res.data;
                     setThreadTitle(details.title);
@@ -37,19 +37,45 @@ function Thread(props) {
     }, [])
 
 
-    let commentsListing = threadComments.map((comment, index) => {
-        return (
-            <ThreadComment {...comment} key={index}/>
-        )
-    });
+    let commentsListing = () => {
+        if (threadComments && threadComments.length) {
+
+            function commentComparison(a, b) {
+                if (a.id > b.id) return 1;
+
+                else if (b.id > a.id) return -1;
+
+                return 0;
+            }
+
+            threadComments.sort( commentComparison );
+            return threadComments.map( (comment, index) => {
+                return (
+                    <ThreadComment {...comment} key={index}/>
+                )
+            });
+        }
+        else if (initialFetchError !== null) {
+            return ( <div className={"message paper"}>Error: Unable to retrieve thread comments.</div> )
+        }
+        else {
+            return ( <div className={"message paper"}>No comments found. Be the first the share a comment
+            above.</div> )
+        }
+
+    }
 
     let clearNewCommentForm = () => {
-        console.log("g");
         setNewCommentMessage("");
     }
 
     let addNewCommentToThreadComments = c => {
-        setThreadComments(old => [...old, c])
+        if (threadComments.length > 0) {
+            setThreadComments(old => [...old, c])
+        }
+        else {
+            setThreadComments([c])
+        }
     }
 
     let handleNewCommentMessageChange = e => {
@@ -57,9 +83,9 @@ function Thread(props) {
     }
 
     let handleSubmitComment = e => {
-        axios.post(`/api/channels/${params.id}`, {message: message})
+        axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/threads/${params.id}`, {message: newCommentMessage})
             .then(res => {
-                let id = res.data.id;
+                let id = res.data.message_id;
                 addNewCommentToThreadComments({id: id, message: newCommentMessage, author: newCommentAuthor})
 
                 clearNewCommentForm();
@@ -74,28 +100,23 @@ function Thread(props) {
         <section className={"page"}>
             <Container className={"flex flex-col"}>
                 <div className={"thread-details paper flex flex-col"}>
-                    {!initialFetchError || threadTitle != null && <div className={""}>
+                    <div className={""}>
                         <h3>{threadTitle}</h3>
                         <div className={"details"}>{threadMessage}</div>
-                    </div> }
+                    </div>
                     {initialFetchError && !threadTitle && <div className={"message"}>Error: Unable to retrieve thread details.</div>}
 
                 </div>
                 {}
                 <div className={"thread-comments flex flex-col"}>
+                    <h4 className={"title paper"}>Comments</h4>
                     <div className={"thread-comment-form paper"} >
                         <textarea placeholder={"Share a comment"} className={"app-input"} required={true} onChange={ handleNewCommentMessageChange } value={newCommentMessage}/>
                         <div className={"flex flex-row flex-justify-end"}>
                             <input className={"app-button"} type={"submit"} value={"Submit"} onClick={ e => handleSubmitComment(e) }/>
                         </div>
                     </div>
-                    <h4 className={"title paper"}>Comments</h4>
-                    { threadComments.length > 0 && commentsListing}
-                    { initialFetchError && !threadComments.length &&
-                        <div className={"message paper"}>Error: Unable to retrieve thread comments.</div>}
-                    { !initialFetchError && !threadComments.length &&
-                        <div className={"message paper"}>No comments found. Be the first the share a comment
-                            above.</div>}
+                    { commentsListing() }
                 </div>
 
             </Container>
