@@ -12,7 +12,7 @@ const Component = function(props) {
     let setCurrentThread = props.setCurrentThread;
 
     return (
-        <div className={"thread-component paper flex flex-row"}>
+        <div className={"thread-component flex flex-row"}>
             <div
                 className={"title"}
                 onClick={() => {
